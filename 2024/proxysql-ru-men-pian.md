@@ -2,7 +2,7 @@
 
 Aurora 是 Amazon 旗下一款商业数据库产品，是一个兼容 MySQL 和 PostgreSQL 的关系数据库引擎。Aurora 集群由主数据库实例（Primary DB Instance）和副本（Replica）实例构成，其中主数据库实例支持读取和写入操作，Aurora 副本则仅支持读取（ready\_only）操作。当主数据库实例不可用时，Aurora 自动故障转移到 Aurora 副本。
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="480"><figcaption><p>Amazon Aurora DB clusters</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/aws-auroradb-clusters.png" alt="" width="480"><figcaption><p>Amazon Aurora DB clusters</p></figcaption></figure>
 
 我们在使用 Aurora 的过程中发现，大部分流量都导向了Primary DB Instance，副本节点之间的流量并不均匀，因此没有很好地利用 Aurora 副本的高性能读数据的能力。为了解决这个问题我们能想到的思路有两个，一个是通过封装 SDK 的模式，另一个是引入一个 Proxy 来集中处理。
 
@@ -229,7 +229,7 @@ docker run -d \
 
 ### 读写分离
 
-<img src="../.gitbook/assets/file.excalidraw.svg" alt="" class="gitbook-drawing">
+<img src="../.gitbook/assets/proxysql-rw-splitting.excalidraw.svg" alt="" class="gitbook-drawing">
 
 我们将使用 tshark 来抓包，以证明 SQL 请求走向哪个 MySQL 节点。命令如下，拦截 4406 和 5506 两个端口，并将 tcp frame 以 MySQL 协议解析。
 
@@ -300,7 +300,7 @@ docker exec -ti proxysql-demo mysql -uadmin -padmin --host=127.0.0.1 --port=6032
 
 在浏览器中访问 [https://localhost:6080](https://localhost:6080)，默认用户名和密码是 stats:stats。
 
-<figure><img src="../.gitbook/assets/Screenshot from 2024-03-18 10-05-16.png" alt=""><figcaption><p>HTTP Web Server | ProxySQL</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/ProxySQL-HTTP-Web-Server-Overview.png" alt=""><figcaption><p>HTTP Web Server | ProxySQL</p></figcaption></figure>
 
 ## 参考书目
 
