@@ -46,7 +46,7 @@ dc83ac9a0646  docker.io/library/mysql:8.0  mysqld      2 minutes ago  Up 2 minut
 <pre class="language-sql"><code class="lang-sql"><strong>SET GLOBAL read_only = 1
 </strong></code></pre>
 
-### 构建 ProxySQL&#x20;
+### 构建 ProxySQL
 
 #### 前置条件
 
@@ -229,7 +229,7 @@ docker run -d \
 
 ### 读写分离
 
-<img src="../.gitbook/assets/proxysql-rw-splitting.excalidraw.svg" alt="" class="gitbook-drawing">
+<img src="../.gitbook/assets/proxysql-rw-splitting.excalidraw.svg" alt="Read/Write Splitting" class="gitbook-drawing">
 
 我们将使用 tshark 来抓包，以证明 SQL 请求走向哪个 MySQL 节点。命令如下，拦截 4406 和 5506 两个端口，并将 tcp frame 以 MySQL 协议解析。
 
