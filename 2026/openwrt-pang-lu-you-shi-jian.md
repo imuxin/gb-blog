@@ -1,6 +1,13 @@
+---
+description: >-
+  下面是一套单网口 Ubuntu 宿主机 + KVM/libvirt + Vagrant 部署 OpenWrt
+  旁路由的方案。拓扑是“单臂旁路由”：OpenWrt VM 和主路由、客户端都在同一个 LAN，客户端默认网关指向 OpenWrt，OpenWrt
+  再把流量转发到主路由。这样不需要第二块物理网卡。
+---
+
 # 🔥 OpenWrt 旁路由实践
 
-下面是一套**单网口 Ubuntu 宿主机 + KVM/libvirt + Vagrant 部署 OpenWrt 旁路由**的方案。拓扑是“单臂旁路由”：OpenWrt VM 和主路由、客户端都在同一个 LAN，客户端默认网关指向 OpenWrt，OpenWrt 再把流量转发到主路由。这样不需要第二块物理网卡。
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 ### 0. 目标拓扑
 
