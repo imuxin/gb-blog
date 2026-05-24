@@ -283,7 +283,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider :libvirt do |libvirt|                                                                                 libvirt.uri = "qemu:///system"
     libvirt.driver = "kvm"
 
-    libvirt.memory = 256
+    libvirt.memory = 1024
     libvirt.cpus = 1
 
     libvirt.disk_bus = "virtio"
