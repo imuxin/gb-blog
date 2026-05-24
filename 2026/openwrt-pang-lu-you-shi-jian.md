@@ -198,6 +198,11 @@ uci set network.lan.gateway='192.168.1.1'
 uci delete network.lan.dns 2>/dev/null
 uci add_list network.lan.dns='192.168.1.1'
 
+# 禁止 eth1/wan 下发默认路由，然后让 lan/br-lan 使用主路由作为上游。
+uci set network.wan.defaultroute='0'
+uci set network.wan.peerdns='0'
+uci set network.wan.auto='0'
+
 # 首次启动默认关闭 OpenWrt DHCP，避免和主路由 DHCP 冲突
 uci set dhcp.lan.ignore='1'
 
