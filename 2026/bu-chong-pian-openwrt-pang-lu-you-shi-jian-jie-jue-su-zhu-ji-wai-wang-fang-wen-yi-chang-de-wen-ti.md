@@ -12,6 +12,8 @@ description: 从外网访问 Ubuntu 宿主机上的服务时，请求可以进�
 
 这篇文章就是对这个问题的补充说明，重点讲清楚问题原因，以及如何通过第二张物理网卡和源地址策略路由来解决。
 
+<figure><img src="../.gitbook/assets/ChatGPT Image 2026年6月9日 12_41_02.png" alt=""><figcaption></figcaption></figure>
+
 ***
 
 ### 一、当前网络结构
