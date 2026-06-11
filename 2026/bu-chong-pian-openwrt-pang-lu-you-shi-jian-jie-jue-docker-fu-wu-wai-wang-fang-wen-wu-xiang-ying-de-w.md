@@ -421,9 +421,18 @@ IP routing policy must include either a 'from' or 'to' IP
 
 ### 八、nftables 最终配置
 
-`nftables` 规则如下：
+保留系统默认 `/etc/nftables.conf` 不动，**不要把你的 Docker PBR 规则写进这个文件里**，也不要通过 `restart nftables` 来重载它。
 
-```nft
+单独放一个文件：
+
+```shellscript
+sudo mkdir -p /etc/nftables.d
+sudo nano /etc/nftables.d/docker-pbr.nft
+```
+
+内容：
+
+```
 table inet docker_pbr {
   set wan_ports {
     type inet_service
@@ -433,52 +442,105 @@ table inet docker_pbr {
   chain prerouting {
     type filter hook prerouting priority mangle; policy accept;
 
-    # 对已经标记过的连接，恢复 skb mark，供策略路由使用
-    ct mark 0x99 meta mark set ct mark
+    # 原始入站方向：只给连接打 ct mark，不设置 meta mark
+    # 这样 Docker DNAT 后，包仍然可以按主路由表进入 Docker bridge
+    iifname "enp7s0" ip daddr 192.168.1.99 tcp dport @wan_ports ct mark set 0x99
 
-    # 从 enp7s0 进入并访问 192.168.1.99 指定端口的连接，打连接标记
-    iifname "enp7s0" ip daddr 192.168.1.99 tcp dport @wan_ports ct mark set 0x99 meta mark set 0x99
+    # 回复方向：只对 conntrack reply 方向恢复 meta mark
+    # 这样只有容器回包才会命中 fwmark 策略路由
+    ct mark 0x99 ct direction reply meta mark set ct mark
   }
 }
 ```
 
-如果希望方便观察规则是否命中，也可以临时加上 `counter`：
+然后用单独的 systemd service 加载它：
 
-```nft
-table inet docker_pbr {
-  set wan_ports {
-    type inet_service
-    elements = { 9080, 9443 }
-  }
-
-  chain prerouting {
-    type filter hook prerouting priority mangle; policy accept;
-
-    ct mark 0x99 counter meta mark set ct mark
-
-    iifname "enp7s0" ip daddr 192.168.1.99 tcp dport @wan_ports counter ct mark set 0x99 meta mark set 0x99
-  }
-}
+```shellscript
+sudo nano /etc/systemd/system/docker-pbr-nft.service
 ```
 
-查看规则：
+写入：
 
-```bash
-sudo nft list ruleset
+```ini
+[Unit]
+Description=Load nftables rules for Docker policy routing
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStartPre=-/usr/sbin/nft delete table inet docker_pbr
+ExecStart=/usr/sbin/nft -f /etc/nftables.d/docker-pbr.nft
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-持久化配置可以写入：
+启用：
 
-```bash
-/etc/nftables.conf
+```shellscript
+sudo systemctl daemon-reload
+sudo systemctl enable --now docker-pbr-nft.service
 ```
 
-然后启用服务：
+之后修改规则时，用：
 
-```bash
-sudo systemctl enable nftables
+```shellscript
+sudo systemctl restart docker-pbr-nft.service
+```
+
+不要用：
+
+```shellscript
 sudo systemctl restart nftables
 ```
+
+### 当前已经报错后的恢复顺序
+
+先让 Docker 重建自己的链：
+
+```shellscript
+sudo systemctl restart docker
+```
+
+再加载你的 PBR nft 规则：
+
+```shellscript
+sudo systemctl restart docker-pbr-nft.service
+```
+
+再启动 compose：
+
+```shellscript
+docker compose up -d
+```
+
+验证：
+
+```shellscript
+sudo iptables -t filter -S DOCKER-FORWARD
+sudo nft list table inet docker_pbr
+```
+
+### 也可以选择禁用 nftables.service
+
+如果你没有用系统防火墙，只是为了这条 PBR 规则，甚至可以让默认的 `nftables.service` 不参与启动：
+
+```shellscript
+sudo systemctl disable nftables
+```
+
+然后只保留：
+
+```
+docker-pbr-nft.service
+```
+
+这样不会在启动或重启时误清 Docker 链。
+
+我的建议是：**默认 `/etc/nftables.conf` 可以保留，但不要动它；你的规则用独立 service 管理。**
 
 ***
 
