@@ -1,0 +1,106 @@
+# Page 1
+
+<br>
+
+## 《C++ Common Knowledge》在 2026 年是否仍然适用 <a href="#ccommonknowledge-zai-2026-nian-shi-fou-reng-ran-shi-yong" id="ccommonknowledge-zai-2026-nian-shi-fou-reng-ran-shi-yong"></a>
+
+### 执行摘要 <a href="#zhi-xing-zhai-yao" id="zhi-xing-zhai-yao"></a>
+
+如果用户指的是英文原版 **《C++ Common Knowledge: Essential Intermediate Programming》**，我检索到的可靠公开资料都指向 **Stephen C. Dewhurst** 的 **英文第 1 版**，由 **Addison-Wesley Professional** 于 **2005 年 2 月**出版，纸书 ISBN 为 **9780321321923 / 0321321928**，电子版 ISBN 为 **9780321624024 / 0321624025**，全书 **272 页**，共 **63 个 Item**。我**没有找到英文第 2 版或经过技术修订的新版**证据。中文译本公开目录记录为 **《C++必知必会》**，作者 Stephen C. Dewhurst、译者荣耀；但公共元数据对其**出版年与“第 2 版”标识存在冲突**，WorldCat 记录为 2010 年“Di 2 ban”，豆瓣与零售元数据又出现 2006、2010、2016 等记录，因此**不能据此推断存在内容修订版**，更稳妥的结论是：**中文版本存在多次出版或重印记录，但未见可靠证据表明其技术内容系统更新到了现代 C++**。
+
+就“**2026 年现代 C++ 语境下是否仍然 up-to-date**”这一核心问题，结论应当分成两层。**第一层：作为 C++03/早期 C++ 专业语义与陷阱读物，它仍然有价值。** 书中对数据抽象、多态、名字查找、ADL、模板基础、异常安全、RAII、对象模型、指针与引用、工厂方法等主题的解释，许多到 2026 年仍是成立的。**第二层：作为 2026 年的“现代 C++ 中级主教材”，它明显不够新，也不应单独使用。** 原因很直接：该书出版于 2005 年，**先于 C++11**；而现代 C++ 的主干恰恰是 **C++11/14/17/20/23** 形成的语义与库生态，包括 move semantics、`auto`/`decltype`、lambda、`override`/`final`、`noexcept`、并发库、`std::unique_ptr`/`shared_ptr`/`weak_ptr`、`string_view`、`optional`、`variant`、`filesystem`、`chrono` 的 calendrical/time-zone 扩展、CTAD、`if constexpr`、concepts、ranges、coroutines、modules、`std::expected` 等；这些内容本书要么完全缺失，要么仍以 C++03 时代的讲法展开。
+
+因此，**总体判定**是：\
+这本书在 2026 年**适合“补语义底子”和“维护老代码/混合代码库”的读者**，但**不适合当作现代 C++ 的主线学习书**。更准确地说，它是一本\*\*“仍值得读，但必须配套现代材料”\*\*的书；如果只读它，读者会系统性漏掉现代 C++ 的核心实践与生态。社区讨论里恰好也出现了类似评价：有经验用户明确说这本书“**old, written for old standards, but still worth reading**”；也有人推荐它给基础不差的读者，但同时强调它“**a bit old**”，最好与现代资源并读。
+
+最重要的补课优先级只有一条主线：**先补语言与库范式，再补工程与工具链**。换言之，优先补 **move semantics / rule of zero / smart pointers / `auto`+`decltype` / lambdas / `override`/`final` / `noexcept` / `constexpr` / `if constexpr` / concepts / ranges / coroutines / modules / concurrency / filesystem / chrono / expected**；随后再补 **CMake、packages、sanitizers、static analysis、Core Guidelines**。这些正是 2026 年“现代 C++”与 2005 年 C++03 之间最决定性的断层。
+
+### 版本与目录考证 <a href="#ban-ben-yu-mu-lu-kao-zheng" id="ban-ben-yu-mu-lu-kao-zheng"></a>
+
+英文原版的可核实信息比较清楚：O’Reilly 图书页与 VitalSource 电子教材页都指向 **Stephen C. Dewhurst**、**2005 年 2 月**、**Addison-Wesley Professional**，并给出 **272 页**、纸书 ISBN **0321321928 / 9780321321923** 与电子版 ISBN **0321624025 / 9780321624024**。WorldCat 也将其记录为 **©2005** 的英文图书。综合这些信息，可以相对确定：**英文原书的公开可见主版本是 2005 年第 1 版**。
+
+关于“**所有 edition**”，我能确认的不是“多个修订版”，而是“**同一技术内容的不同发行形态与地域版本**”。除英文纸书 / eText 外，AbeBooks 等零售信息显示存在 **TBS / Pearson Education** 的本地化印制版本；但我没有找到任何可靠证据表明这些版本在技术内容上形成了“第 2 英文版”那样的修订。换言之，\*\*目前最稳妥的说法是：有不同 ISBN、不同地区印本或电子版，但没有找到英文技术修订版。\*\*
+
+中文世界里，能确认存在 **《C++必知必会》**。WorldCat 记录其作者为 **Stephen C. Dewhurst 著；荣耀译**，出版社 **人民邮电出版社**，年份 **2010**，并标注 **Di 2 ban**；但豆瓣与零售页面又同时给出 **2006-1**、**2010-11-10**、**2016-4-1** 等记录。由于这些公开元数据并不一致，而且“第 2 版”在中文出版环境里有时也可能对应再版/重印而非技术修订，**本报告不假定中文译本存在经过现代 C++ 更新的“新版内容”**。
+
+官方 Pearson 样张 PDF 与 O’Reilly 目录页都显示，全书以 **63 个 Item** 组织，没有现代教材常见的“C++11/17/20/23”章节结构。目录从 **Item 1 Data Abstraction** 到 **Item 63 Optional Keywords**，中间覆盖 STL、名字查找、工厂模式、异常安全、RAII、smart pointers、`auto_ptr`、traits、SFINAE、generic algorithms、include guards 等。换言之，**完整目录本身已经透露出一本“C++03 时代中级知识手册”的气质：它抓住了很多基础语义，却天然缺失后续二十年的语言演进。** 官方 TOC 的完整顺序已经在下文的逐章评估表中逐项展开。
+
+### 现代 C++ 标准演进与本书的断层 <a href="#xian-daicbiao-zhun-yan-jin-yu-ben-shu-de-duan-ceng" id="xian-daicbiao-zhun-yan-jin-yu-ben-shu-de-duan-ceng"></a>
+
+从标准演进看，这本书与“现代 C++”之间的时间断层非常大。**C++11** 是自 C++98 之后最重要的大版本更新，引入了 **move semantics、lambda、`auto`/`decltype`、`override`/`final`、`noexcept`、并发支持库、`constexpr`、新一代智能指针模型**；**C++14** 加强了 `decltype(auto)`、返回类型推导与 variable templates；**C++17** 带来了 **`string_view`、`optional`、`variant`、`filesystem`、CTAD、结构化绑定、`if constexpr`**；**C++20** 则把 **concepts、ranges、coroutines、modules、calendar/time zone `chrono`** 等现代核心机制正式带入标准；**C++23** 又加入了 **`std::expected`**、**`std::generator`** 等补完项。对于 2026 年开发者而言，这些内容不是“补充品”，而是现代风格的主干。
+
+```
+2005《C++ CommonKnowledge》出版C++11move semantics /lambda / auto /decltype /override-final /noexcept / threadlibrary / constexpr /unique_ptr-shared_ptrC++14decltype(auto) /return typededuction / variabletemplatesC++17string_view /optional / variant /filesystem / CTAD /structured bindings/ if constexprC++20concepts / requires/ ranges /coroutines /modules /jthread-stop_token/ chronocalendar-timezoneC++23expected /generator / ranges补完 / 更多constexpr 与库改进2024-2026P2300 execution /P2996 reflection /contracts继续演进与争论C++ 标准演进与本书的覆盖断层Show code
+```
+
+上图最后一行也很重要。到 2026 年，WG21 在 **post-2023** 的重要方向已明显移向 **异步执行模型 `std::execution` / P2300**、**静态反射 P2996** 与 **contracts**。这些方向并不是本书“略旧”而已，而是**彻底不在本书问题域里**；这也是为什么它很难被称作 2026 年“up-to-date”的中级书。Herb Sutter 在 2024 年谈到下一阶段 modern C++ 时，也明确把 **safety by default** 与 **reflection-based generative compile-time libraries** 描述为新一轮现代 C++ 的核心特征之一。
+
+为了更直观看到“本书还能教什么、缺了什么”，下表按用户要求的核心领域做一张相关性热力表。这里的判断标准不是“书中是否提到”，而是“到 2026 年，这一领域是否仍可直接拿来指导现代代码”。
+
+<table><thead><tr><th>核心领域</th><th width="102.37890625">书中覆盖</th><th width="128.359375">2026 相关性</th><th>判定</th><th width="202.6796875">说明</th></tr></thead><tbody><tr><td>语言基础与对象模型</td><td>高</td><td>高</td><td>🟩 仍然适用</td><td>引用、const、查找规则、对象生命周期、异常安全基本盘仍成立。</td></tr><tr><td>OOP 与经典设计模式</td><td>高</td><td>中</td><td>🟨 部分过时</td><td>继承/虚函数仍重要，但现代 C++ 更强调值语义、RAII、组合、type erasure、<code>variant</code>、concepts。</td></tr><tr><td>模板基础</td><td>高</td><td>高</td><td>🟩 仍然适用</td><td>特化、偏特化、<code>typename</code>/<code>template</code> 消歧、策略类仍是根基。</td></tr><tr><td>类型系统与类型推导</td><td>中</td><td>高</td><td>🟨 部分过时</td><td>书里缺少 <code>auto</code>、<code>decltype</code>、CTAD、结构化绑定等现代主线。</td></tr><tr><td>move semantics</td><td>无</td><td>极高</td><td>🟥 缺失且关键</td><td>现代资源转移、sink 参数、rule of five/zero 都建立在 C++11 之后。</td></tr><tr><td>RAII</td><td>高</td><td>极高</td><td>🟩 仍然适用</td><td>这是全书最“不过时”的部分之一。</td></tr><tr><td>并发</td><td>无</td><td>高</td><td>🟥 缺失</td><td>书出版时尚无标准线程库；现代至少应知道 <code>thread</code>/<code>jthread</code>/<code>stop_token</code>/原子等待。</td></tr><tr><td>modules</td><td>无</td><td>高</td><td>🟥 缺失</td><td>现代构建与依赖分析受到 modules 明显影响。</td></tr><tr><td>coroutines</td><td>无</td><td>中高</td><td>🟥 缺失</td><td>现代异步 C++ 已绕不开 coroutine 基础。</td></tr><tr><td>ranges</td><td>无</td><td>高</td><td>🟥 缺失</td><td>ranges 是 STL 的一次“范式级升级”。</td></tr><tr><td>concepts</td><td>无</td><td>高</td><td>🟥 缺失</td><td>现代泛型接口应优先用 concepts/requires，而非裸 SFINAE。</td></tr><tr><td>constexpr / consteval</td><td>无</td><td>高</td><td>🟥 缺失</td><td>现代编译期计算与库设计的重要支柱。</td></tr><tr><td>元编程</td><td>中</td><td>高</td><td>🟨 部分过时</td><td>书中有 traits / policies / SFINAE，但缺 <code>if constexpr</code>、concepts、反射走向。</td></tr><tr><td>标准库</td><td>中</td><td>高</td><td>🟨 部分过时</td><td>主要是早期 STL；现代开发还需 <code>string_view</code>/<code>optional</code>/<code>variant</code>/<code>filesystem</code>/<code>chrono</code>/<code>expected</code>。</td></tr><tr><td>networking</td><td>无</td><td>中</td><td>⬜ 不适用但应说明</td><td>C++23 仍无正式标准 networking；现有公开资料主要在 Networking TS (<code>&#x3C;experimental/net></code>)。</td></tr><tr><td>tooling / diagnostics</td><td>近无</td><td>高</td><td>🟥 缺失</td><td>现代工程离不开 sanitizers、静态分析、Core Guidelines 检查。</td></tr><tr><td>build systems / dependencies</td><td>近无</td><td>高</td><td>🟥 缺失</td><td>现代 C++ 通常以 CMake + 包管理器为默认组合。</td></tr><tr><td>best practices</td><td>中</td><td>高</td><td>🟨 部分过时</td><td>基础工程直觉仍好，但现代最佳实践已显著向 Core Guidelines 与“安全默认值”移动。</td></tr></tbody></table>
+
+### 逐章评估总表 <a href="#zhu-zhang-ping-gu-zong-biao" id="zhu-zhang-ping-gu-zong-biao"></a>
+
+下表按 **Item 1–63** 逐项判断。\
+状态标记含义：**现行** = 到 2026 年仍可直接学习；**部分过时** = 原理仍有用，但现代写法/库/语言特性已明显替代或扩展；**过时** = 书中的典型做法已不应作为现代默认写法。\
+“标准映射”列只写**对判断有实质影响**的标准版本或 post-2023 提案。
+
+<table><thead><tr><th width="195.3125">Item</th><th>状态</th><th>标准映射</th><th width="308.69140625">2026 说明与现代替代</th></tr></thead><tbody><tr><td>1 Data Abstraction</td><td>现行</td><td>11/20/23</td><td>核心观念不过时；现代补上值语义、<code>constexpr</code>、concepts 对接口建模的影响。建议配读 <em>A Tour of C++, 3e</em> 与 Core Guidelines。</td></tr><tr><td>2 Polymorphism</td><td>部分过时</td><td>17/20</td><td>运行时多态仍成立，但现代 C++ 也大量使用 concepts、<code>variant</code>、type erasure、组合而非纯继承。</td></tr><tr><td>3 Design Patterns</td><td>部分过时</td><td>11/17/20</td><td>设计模式本身没消失，但许多 GoF 模式被 lambda、RAII、智能指针、<code>variant</code>、ranges 简化。</td></tr><tr><td>4 The Standard Template Library</td><td>部分过时</td><td>17/20/23</td><td>仍值得学 STL 思想；但 2026 必须把 STL 理解拓展到 ranges、projections、新容器与 PMR。</td></tr><tr><td>5 References Are Aliases, Not Pointers</td><td>现行</td><td>11/17</td><td>语义仍完全正确；现代再补结构化绑定和转发引用的语境。</td></tr><tr><td>6 Array Formal Arguments</td><td>部分过时</td><td>17/20</td><td>书中提醒有效，但现代 API 设计更倾向 <code>std::span</code>、<code>string_view</code>、ranges，而非“指针+长度”。</td></tr><tr><td>7 Const Pointers and Pointers to Const</td><td>现行</td><td>11/20</td><td>基础且仍然重要；现代补上 <code>constexpr</code>、<code>consteval</code>、不可变接口设计的上下文。</td></tr><tr><td>8 Pointers to Pointers</td><td>部分过时</td><td>11/17/20</td><td>低层知识仍有用，但工程级代码常改用容器、迭代器、智能指针、<code>span</code>。</td></tr><tr><td>9 New Cast Operators</td><td>现行</td><td>11/20</td><td><code>static_cast</code>/<code>dynamic_cast</code>/<code>reinterpret_cast</code>/<code>const_cast</code> 仍是必备；只是现代风格要求更少、边界更清晰。</td></tr><tr><td>10 Meaning of a Const Member Function</td><td>现行</td><td>11/20</td><td>仍重要；现代还应加 <code>noexcept</code>、<code>constexpr</code>、线程安全与逻辑常量性。</td></tr><tr><td>11 The Compiler Puts Stuff in Classes</td><td>现行</td><td>11/20</td><td>原理仍成立；现代必须补 <code>=default</code>、<code>=delete</code>、move ops、比较运算默认化的后续语义。</td></tr><tr><td>12 Assignment and Initialization Are Different</td><td>部分过时</td><td>11/17</td><td>仍然对，但现代还要补列表初始化、保证拷贝消除、CTAD。</td></tr><tr><td>13 Copy Operations</td><td>部分过时</td><td>11/20</td><td>这一章在现代必须升级到 rule of five / rule of zero 与 move semantics。</td></tr><tr><td>14 Function Pointers</td><td>部分过时</td><td>11/17</td><td>仍用于 ABI/C 互操作；但一般回调场景今日更多用 lambda、<code>std::function</code> 或 concepts。</td></tr><tr><td>15 Pointers to Class Members Are Not Pointers</td><td>现行</td><td>11/20</td><td>语义仍对，只是属于较窄而偏底层的 C++ 知识。</td></tr><tr><td>16 Pointers to Member Functions Are Not Pointers</td><td>现行</td><td>11/20</td><td>同上；对理解语言细节仍有价值，但在日常现代代码中出现频率较低。</td></tr><tr><td>17 Dealing with Function and Array Declarators</td><td>现行</td><td>11/17</td><td>语法知识仍真；但现代会更多用 <code>using</code>、<code>auto</code>、类型别名和工具消化复杂声明。</td></tr><tr><td>18 Function Objects</td><td>部分过时</td><td>11/20</td><td>函数对象没有过时，但默认表达手段已从手写 functor 转为 lambda 与 CPO 风格。</td></tr><tr><td>19 Commands and Hollywood</td><td>部分过时</td><td>11/20</td><td>回调/命令思想仍有用，但现代实现多用 lambda、异步 sender/coroutine 风格。</td></tr><tr><td>20 STL Function Objects</td><td>部分过时</td><td>11/20/23</td><td>传统 STL functor 仍认识一下即可；现代常由 lambda、ranges projections 取代。</td></tr><tr><td>21 Overloading and Overriding Are Different</td><td>现行</td><td>11</td><td>完全现行；现代只需把 <code>override</code>/<code>final</code> 设为默认写法。</td></tr><tr><td>22 Template Method</td><td>部分过时</td><td>17/20</td><td>模式仍在，但现代常用组合、策略类、CRTP、concepts 或算法管线替代部分继承结构。</td></tr><tr><td>23 Namespaces</td><td>现行</td><td>11/20</td><td>完全现行；现代还要知道 inline namespace 与 modules 带来的新边界。</td></tr><tr><td>24 Member Function Lookup</td><td>现行</td><td>11/20</td><td>名字查找仍是 C++ 根语义之一。</td></tr><tr><td>25 Argument Dependent Lookup</td><td>现行</td><td>11/20/23</td><td>ADL 到 2026 年仍很关键，尤其在泛型代码与定制点设计里。</td></tr><tr><td>26 Operator Function Lookup</td><td>现行</td><td>11/20</td><td>仍然成立；现代只是在风格上更强调运算符实现的约束与可读性。</td></tr><tr><td>27 Capability Queries</td><td>部分过时</td><td>11/20</td><td>若其中心是检测“类型是否支持某操作”，今天首选 concepts / <code>requires</code>，其次 traits，而非旧式探测技巧。</td></tr><tr><td>28 Meaning of Pointer Comparison</td><td>现行</td><td>11/20</td><td>基础语义仍不过时，但在高层代码中被容器/迭代器/<code>span</code> 稀释。</td></tr><tr><td>29 Virtual Constructors and Prototype</td><td>部分过时</td><td>11/17/20</td><td>思想仍有价值；现代实现更常写成 <code>clone()->std::unique_ptr</code>、工厂函数或 type erasure。</td></tr><tr><td>30 Factory Method</td><td>现行</td><td>11</td><td>仍然重要，但 2026 的默认返回类型通常是 <code>unique_ptr</code> 或 <code>shared_ptr</code>，而非裸指针。</td></tr><tr><td>31 Covariant Return Types</td><td>现行</td><td>11/20</td><td>语言规则完全有效；只是现代工厂常以智能指针表达所有权。</td></tr><tr><td>32 Preventing Copying</td><td>过时</td><td>11</td><td>书中典型做法是“私有声明但不定义拷贝操作”；现代正确写法应是 <code>= delete</code>。</td></tr><tr><td>33 Manufacturing Abstract Bases</td><td>部分过时</td><td>17/20</td><td>抽象基类仍重要，但现代还有 concepts、<code>variant</code>、type erasure 等替代。</td></tr><tr><td>34 Restricting Heap Allocation</td><td>部分过时</td><td>11/17</td><td>某些场景仍需要控制分配，但现代更常通过工厂、RAII 句柄、PMR、测试友好设计处理。</td></tr><tr><td>35 Placement New</td><td>现行</td><td>11/17/20</td><td>高级而低层，仍完全有效；但应仅用于对对象生存期与布局有强控制的场景。</td></tr><tr><td>36 Class-Specific Memory Management</td><td>部分过时</td><td>17</td><td>语言机制仍在，但现代标准库更鼓励 allocators / PMR，而非到处自定义 <code>operator new/delete</code>。</td></tr><tr><td>37 Array Allocation</td><td>部分过时</td><td>11/17/20</td><td>现代默认应优先 <code>std::array</code>、<code>std::vector</code>、<code>std::string</code>、<code>std::span</code>、<code>unique_ptr&#x3C;T[]></code>。</td></tr><tr><td>38 Exception Safety Axioms</td><td>现行</td><td>11/20</td><td>强保证/基本保证/不抛保证至今仍是现代库设计核心。</td></tr><tr><td>39 Exception Safe Functions</td><td>现行</td><td>11/20</td><td>仍成立；现代只会把 <code>move</code>、<code>noexcept</code>、智能指针纳入实现工具箱。</td></tr><tr><td>40 RAII</td><td>现行</td><td>11/20/23</td><td>本书最强、最不过时的章节之一；现代再延伸到 <code>jthread</code> 自动 join、scope guard、资源句柄。</td></tr><tr><td>41 New, Constructors, and Exceptions</td><td>现行</td><td>11/20</td><td>仍然重要；现代建议结合 <code>make_unique</code>/工厂与 <code>noexcept</code> 思维理解。</td></tr><tr><td>42 Smart Pointers</td><td>部分过时</td><td>11/17/20</td><td>主题本身极重要，但若仍以 <code>auto_ptr</code> 时代展开就明显过时；现代主角是 <code>unique_ptr</code>/<code>shared_ptr</code>/<code>weak_ptr</code>。</td></tr><tr><td>43 auto_ptr Is Unusual</td><td>过时</td><td>11/17</td><td>这是“历史文物章”；<code>auto_ptr</code> 在 C++11 被弃用，在 C++17 被移除。</td></tr><tr><td>44 Pointer Arithmetic</td><td>部分过时</td><td>11/20</td><td>对底层与性能代码仍有用，但普通应用层应尽量升到容器、迭代器、ranges、<code>span</code>。</td></tr><tr><td>45 Template Terminology</td><td>现行</td><td>11/20</td><td>基础术语不会过时。</td></tr><tr><td>46 Class Template Explicit Specialization</td><td>现行</td><td>11/20</td><td>规则仍有效。</td></tr><tr><td>47 Template Partial Specialization</td><td>现行</td><td>11/20</td><td>规则仍有效。</td></tr><tr><td>48 Class Template Member Specialization</td><td>现行</td><td>11/20</td><td>规则仍有效。</td></tr><tr><td>49 Disambiguating with Typename</td><td>现行</td><td>11/20</td><td>依然是模板语法基石。</td></tr><tr><td>50 Member Templates</td><td>现行</td><td>11/20</td><td>规则与价值都还在。</td></tr><tr><td>51 Disambiguating with Template</td><td>现行</td><td>11/20</td><td>依然重要。</td></tr><tr><td>52 Specializing for Type Information</td><td>部分过时</td><td>11/17/20</td><td>现代做法更多依赖 <code>type_traits</code>、<code>if constexpr</code>、concepts，而非大量手写分派。</td></tr><tr><td>53 Embedded Type Information</td><td>部分过时</td><td>11/17/20</td><td>旧式“把类型信息嵌在类型里”仍是泛型惯用法一部分，但现代库已提供更多标准化接口与概念。</td></tr><tr><td>54 Traits</td><td>现行</td><td>11/20</td><td>traits 依然是元编程基础；只是 2026 应把 traits 与 concepts 联合理解。</td></tr><tr><td>55 Template Template Parameters</td><td>现行</td><td>11/20</td><td>niche 但仍正确。</td></tr><tr><td>56 Policies</td><td>现行</td><td>11/20</td><td>policy-based design 仍是高级设计手段；现代可再结合 concepts 与 CPO。</td></tr><tr><td>57 Template Argument Deduction</td><td>现行</td><td>14/17/20</td><td>基础机制仍现行；现代应补 <code>auto</code>、CTAD、缩写函数模板。</td></tr><tr><td>58 Overloading Function Templates</td><td>现行</td><td>20</td><td>规则仍成立，但现代接口层更应先考虑 concepts/requires。</td></tr><tr><td>59 SFINAE</td><td>部分过时</td><td>17/20</td><td>SFINAE 没有失效，但在 2026 的公开接口约束上通常不再是首选；concepts 更清晰、诊断更好。</td></tr><tr><td>60 Generic Algorithms</td><td>现行</td><td>20/23</td><td>泛型算法思想完全现行，但现代默认平台应是 <code>std::ranges</code> 算法与视图管线。</td></tr><tr><td>61 You Instantiate What You Use</td><td>现行</td><td>17/20</td><td>模板实例化原则仍有效；只是 modules 改变了项目级编译依赖组织方式。</td></tr><tr><td>62 Include Guards</td><td>部分过时</td><td>20</td><td>include guards 仍正确，但现代工程还会用 <code>#pragma once</code>，更重要的是 modules 正在改写头文件边界。</td></tr><tr><td>63 Optional Keywords</td><td>部分过时</td><td>11/20</td><td>“可省略”在现代要重新理解：<code>override</code>、<code>final</code>、<code>noexcept</code>、<code>explicit</code> 往往不该省略。</td></tr></tbody></table>
+
+从逐章看，**真正“过时”的核心是两类**。第一类是**直接绑定老标准做法**的章节，例如 **Item 32 Preventing Copying** 与 **Item 43 auto\_ptr Is Unusual**；前者 today 应以 `=delete` 取代，后者则是已经被 C++11 弃用、C++17 移除的历史遗留。第二类是**虽不错误，但不再是现代默认入口**的章节，例如 capability queries、STL function objects、旧式 smart pointers 语境、旧式 array/指针接口、SFINAE 作为首选约束工具等。
+
+反过来，书中**最值得在 2026 年继续读**的章节大致是：**Item 1–2、9–13、21、23–31、35、38–41、45–58、60–61**。这些内容里要么是语言根语义，要么是模板根基，要么是异常安全/RAII 这类几乎不随标准改变本质的专业知识。它们的不足不是“错”，而是**缺少现代延伸**。
+
+### 专家观点与社区讨论 <a href="#zhuan-jia-guan-dian-yu-she-qu-tao-lun" id="zhuan-jia-guan-dian-yu-she-qu-tao-lun"></a>
+
+从权威作者与标准社区的角度看，**“现代 C++”的定义早已超出本书覆盖边界**。Bjarne Stroustrup 在 **《A Tour of C++, Third Edition》** 的简介中直接把这本书定位为帮助经验程序员理解 **“what constitutes modern C++”** 的 C++20 概览；Timur Doumler 对 C++23 的总结也明确指出：**C++20 的 coroutine、concepts、ranges、modules 已经“profoundly changed the way we write code and think about C++”**。这两种表述都说明：如果一本中级书完全停留在 C++03 语境，它就很难被称作 2026 的“现代 C++”教材。
+
+Herb Sutter 的现代风格主张也与本书形成明显对照。Sutter 在 _Elements of Modern C++ Style_ 中强调，现代代码里 `auto` 会“极其普遍”；在 GotW #90 中又明确写道，现代可移植 C++ 的工厂返回值应优先用 `unique_ptr`、`shared_ptr` 与 `auto`；在 2024 年他进一步把下一阶段 modern C++ 概括为 **“safety by default”** 与 **基于反射的编译期生成式库**。也就是说，现代实践已经从“知道语言陷阱”前进到“如何默认写出更安全、更易维护的代码”。本书擅长前者，但明显欠缺后者。
+
+**C++ Core Guidelines** 也给出了非常直接的现代对照物。它明确建议：尽量避免 **naked `new`/`delete`**、优先使用 **标准库资源句柄**，接口里不要继续传“`T*` + `int`”这类不安全组合，而应考虑 `span` 等更强类型抽象；在模板领域，又把 **“为所有模板参数指定 concepts”** 与 **“尽量使用标准 concepts”** 作为现代准则。把这些与本书的 Item 32、42、43、59 等放在一起看，就会发现**它们解释了旧世界，但没有给出现代默认答案**。
+
+社区讨论与此大体一致，而不是简单地把本书打成“废书”。在 Reddit 的相关讨论里，用户会把 Dewhurst 的书与 Meyers、Josuttis、Arthur O’Dwyer 等作者并列推荐，但会明确加注：**“it is old, i.e. written for old standards, but still worth to read”**；另有用户说这本书“**a bit old, but the points are still valid**”，并希望出现一部风格相似但面向现代 C++ 的替代书。这种表述相当接近本报告的结论：\*\*概念层仍有价值，主线教材地位已经让给现代书。\*\*
+
+Stack Overflow 上围绕 `auto_ptr` 与“现代 C++ 是否仍应依赖裸指针所有权”的讨论，也能看出范式变化。关于 `auto_ptr`，高票问题与 cppreference 一致确认它在 C++11 被弃用、C++17 被移除；关于“在 modern C++ 中何时仍能使用非智能指针”，较符合共识的答案是：**非拥有观察语义可以用裸指针或引用，但拥有语义不该继续默认依赖裸指针。** 这正是本书 Item 42–44 需要现代改写的地方。
+
+从会议话题也能看出 2026 社区关注点已经转移。C++Now / CppCon / Standard C++ Foundation 在近年的公开视频与摘要中，频繁出现 **concepts、ranges、C++23/26 changes、reflection、contracts、parallel algorithms** 等关键词；CMake 官方则在 3.28 起正式支持 C++20 named modules，并为 modules 设计了单独手册。这些并不能说明本书“没价值”，但足以说明：\*\*它不再代表中级 C++ 的前沿知识结构。\*\*
+
+### 结论与更新建议 <a href="#jie-lun-yu-geng-xin-jian-yi" id="jie-lun-yu-geng-xin-jian-yi"></a>
+
+**总 verdict：**\
+到 2026 年，**《C++ Common Knowledge》不应被视为“up-to-date 的现代 C++ 中级教材”**；但它仍然是一本**值得保留、值得读的“语义基础与经典陷阱手册”**。更具体地说，它适合以下三类读者：
+
+第一类，是**维护旧代码库**的人。凡是需要读 C++03/C++11 早期风格代码、理解拷贝控制、名字查找、对象模型、异常安全与 RAII 的工程师，这本书仍然很有帮助。它会让人更快理解“代码为什么这样写”，而不仅是“今天应该怎么写”。
+
+第二类，是**已经会写现代 C++，但想补底层语义直觉**的人。对这类读者，本书像一本“中级语义校正器”——它不负责教你 concepts、ranges、modules，但能帮你把很多“似懂非懂”的老问题讲透。
+
+第三类，是**带新人、做 code review、需要建立团队共同语言的人**。书中许多 Item 之所以历久弥新，不是因为它们新，而是因为它们抓住了“C++ 程序员常误解什么”。这一点到 2026 年仍没有过时。
+
+反过来，它**不适合**以下读者单独使用：\
+想以它为主线进入现代 C++ 的中级学习者；需要系统掌握并发、异步、模块化构建、ranges / concepts / coroutine / modules 的开发者；以及希望直接把书中风格复制到 2026 新项目的人。对这些人来说，单读本书会形成明显知识空洞。
+
+如果要把它“升级到 2026 可用”，最值得按优先级补的内容是下面这组，顺序基本也是推荐顺序：
+
+1. **对象生命周期与所有权现代化**：`unique_ptr` / `shared_ptr` / `weak_ptr`、move semantics、rule of zero、sink 参数、`make_unique`、`noexcept`。这一步直接重写了本书的拷贝控制与 smart pointer 语境。
+2. **泛型编程现代化**：`auto`、`decltype`、CTAD、`if constexpr`、concepts、`requires`。这一步决定你是否还在用 2005 年的“模板思维”。
+3. **STL 现代化**：ranges / views / projections，以及 `string_view`、`optional`、`variant`、`expected`。这一步让“STL”从容器+迭代器+算法升级为 2026 的组合式库生态。
+4. **编译期与接口现代化**：`constexpr` / `consteval`、更强类型接口、标准 concepts。
+5. **并发与异步**：`thread` / `jthread` / `stop_token` / atomic wait-notify、coroutines；若关注 post-2023，再看 P2300 `std::execution`。
+6. **模块化工程**：modules + CMake 3.28+ modules 支持 + 依赖扫描。
+7. **标准库新能力**：`filesystem` 与现代 `chrono`，以及 networking 仍未正式入标准这一事实。
+8. **工程工具链**：CMake、vcpkg / Conan、ASan / UBSan、Core Guidelines 检查。
+
+如果只选一套“补充材料”，我的建议是：\
+先用 \*\*Stroustrup 的 _A Tour of C++, 3rd ed._ \*\*建立现代 C++20 总图，再用 **Core Guidelines** 校正代码风格与所有权观；模板部分用 **《C++ Templates: The Complete Guide, 2nd Edition》**，大型现代工程实践再看 **《Embracing Modern C++ Safely》**。这样回头读 Dewhurst，你会发现它最适合扮演的角色不是“主教材”，而是“经典语义注释本”。
+
+### 资料来源 <a href="#zi-liao-lai-yuan" id="zi-liao-lai-yuan"></a>
+
+本报告主要依赖以下几类资料，括号中的引文可直接打开原文：
+
+* **书目与目录元数据**：O’Reilly 图书页与目录页、VitalSource 版本页、WorldCat 英文/中文记录、Pearson 官方样张 TOC PDF。
+* **现代 C++ 语言与标准库主参考**：cppreference 上的 move semantics、concepts、ranges、coroutines、modules、`constexpr`、`string_view`、`optional`、`variant`、`expected`、`filesystem`、`chrono`、`thread`/`jthread`/`stop_token` 等页面。
+* **权威实践与风格**：C++ Core Guidelines、Herb Sutter 的现代 C++ 风格与工厂/智能指针文章、Bjarne Stroustrup 的 _A Tour of C++, Third Edition_ 简介。
+* **标准委员会与 post-2023 方向**：P2300 `std::execution`、P2996 reflection、contracts 相关论文与 C++26 支持状态页。
+* **工程实践与工具**：CMake 教程、CMake modules 手册、vcpkg、Conan、AddressSanitizer、UBSan、Visual Studio 中的 Core Guidelines 检查。
+* **中文辅助资料**：zh.cppreference 的 concepts / ranges / requires 条目，以及 Microsoft Learn 中文文档中关于 Core Guidelines 检查器与 Visual Studio/CMake 模块支持的说明。
+* **社区讨论与会议信号**：Reddit 上对本书与现代资源的评价，Stack Overflow 上关于 `auto_ptr` 与现代所有权实践的讨论，以及 Standard C++ / C++Now 近年的 talks 摘要。
