@@ -1,8 +1,4 @@
-# Page 1
-
-<br>
-
-## 《C++ Common Knowledge》在 2026 年是否仍然适用 <a href="#ccommonknowledge-zai-2026-nian-shi-fou-reng-ran-shi-yong" id="ccommonknowledge-zai-2026-nian-shi-fou-reng-ran-shi-yong"></a>
+# 《C++ Common Knowledge》在 2026 年是否仍然适用
 
 ### 执行摘要 <a href="#zhi-xing-zhai-yao" id="zhi-xing-zhai-yao"></a>
 
